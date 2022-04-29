@@ -2,72 +2,43 @@ package com.revature.models;
 
 public class Role {
 
-    private int role_id;
-    private String role_title;
-    private int role_salary;
+    private int user_role_id;
+    private String user_role;
 
-
-    //boilerplate code below------------------------------------------
-
-    //no args constructor
     public Role() {
-        super();
-        // TODO Auto-generated constructor stub
     }
 
-    //all args constructor
-    public Role(int role_id, String role_title, int role_salary) {
-        super();
-        this.role_id = role_id;
-        this.role_title = role_title;
-        this.role_salary = role_salary;
+    public Role(int user_role_id, String user_role) {
+        this.user_role_id = user_role_id;
+        this.user_role = user_role;
     }
 
-    //when dealing with JDBC (Java DataBase Connectivity) applications, we like to make "all-args minus id" constructors
-    //these will come in handy when we need to insert more data, because ID is handled on the database side.
-    public Role(String role_title, int role_salary) {
-        super();
-        this.role_title = role_title;
-        this.role_salary = role_salary;
+    public Role(String user_role) {
+        this.user_role = user_role;
     }
 
-
-    //toString() is an important method because it allows us to print objects and their variables as a String
     @Override
     public String toString() {
-        return "Role [role_id=" + role_id + ", role_title=" + role_title + ", role_salary=" + role_salary + "]";
+        return "Role{" +
+                "user_role_id=" + user_role_id +
+                ", user_role='" + user_role + '\'' +
+                '}';
     }
 
-
-    //we need getters and setters to make our private variables visible - ENCAPSULATION
-    public int getRole_id() {
-        return role_id;
+    public int getUser_role_id() {
+        return user_role_id;
     }
 
-
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setUser_role_id(int user_role_id) {
+        this.user_role_id = user_role_id;
     }
 
-
-    public String getRole_title() {
-        return role_title;
+    public String getUser_role() {
+        return user_role;
     }
 
-
-    public void setRole_title(String role_title) {
-        this.role_title = role_title;
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
     }
-
-
-    public int getRole_salary() {
-        return role_salary;
-    }
-
-
-    public void setRole_salary(int role_salary) {
-        this.role_salary = role_salary;
-    }
-
-
 }
+

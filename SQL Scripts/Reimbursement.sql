@@ -28,7 +28,7 @@ INSERT INTO reimbursement_status (reimb_status) VALUES
 ('denied');
 
 CREATE TABLE users (
-users_id SERIAL PRIMARY KEY,
+user_id SERIAL PRIMARY KEY,
 username VARCHAR(200) UNIQUE NOT NULL,
 password VARCHAR(200) NOT NULL,
 first_name VARCHAR(200) NOT NULL,
@@ -50,8 +50,8 @@ date_submitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 date_resolved TIMESTAMP,
 description VARCHAR(250) NOT NULL,
 
-author_fk int REFERENCES users(users_id),
-resolver_fk int REFERENCES users(users_id),
+author_fk int REFERENCES users(user_id),
+resolver_fk int REFERENCES users(user_id),
 status_id_fk int REFERENCES reimbursement_status(reimb_status_id),
 reimb_type_id_fk int REFERENCES reimbursement_type(reimb_type_id)
 );

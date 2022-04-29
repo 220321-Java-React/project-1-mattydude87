@@ -16,6 +16,5 @@ public interface RoleDAOInterface {
     Role getRoleById(int id);
 
     //take in an int and a String, and change the appropriate role's salary using those arguments
-    void updateRoleSalary(String title, int salary);
 
 }

@@ -12,17 +12,17 @@ import com.revature.utils.ConnectionUtil;
 
 //This RoleDAO is responsible for communicating with the roles table in the database
 //Every DB table should have a DAO class associated with it, if you want to use the data from that table
-public class RoleDAO implements RoleDAOInterface{
+public class RoleDAO implements RoleDAOInterface {
 
     //This method will contact the database to get a dataset of all the roles in our database
     @Override
-    public ArrayList<Role> getRoles(){
+    public ArrayList<Role> getRoles() {
 
         //The first thing we do in DAO methods is open a Connection to our database
-        try(Connection conn = ConnectionUtil.getConnection()){
+        try (Connection conn = ConnectionUtil.getConnection()) {
 
             //Write out the SQL query I want to send to the database
-            String sql = "select * from roles;";
+            String sql = "select * from user_roles;";
 
             //Put the SQL query into a Statement object
             Statement s = conn.createStatement(); //createStatement() is a method from our Connection object
@@ -40,14 +40,13 @@ public class RoleDAO implements RoleDAOInterface{
             ArrayList<Role> roleList = new ArrayList<>();
 
             //while there are results in the ResultSet rs... (.next() is a method that returns true if there's more data)
-            while(rs.next()) {
+            while (rs.next()) {
 
                 //use the all-args constructor to create a new Role object from each returned record in the DB
                 Role role = new Role(
                         //we want to use rs.get() for each column in the record
-                        rs.getInt("role_id"),
-                        rs.getString("role_title"),
-                        rs.getInt("role_salary")
+                        rs.getInt("user_role_id"),
+                        rs.getString("user_role")
                 );
 
                 //use .add() to populate our ArrayList with each new Role object
@@ -74,11 +73,11 @@ public class RoleDAO implements RoleDAOInterface{
     public Role getRoleById(int id) {
 
         //use a try-with-resources block to open a DB connection
-        try(Connection conn = ConnectionUtil.getConnection()){
+        try (Connection conn = ConnectionUtil.getConnection()) {
 
             //String that lays out the SQL query we want to run
             //this String has a variable/parameter, the role_id we're searching for is determined at runtime
-            String sql = "select * from roles where role_id = ?";
+            String sql = "select * from user_roles where user_role_id = ?";
 
             //we need a PreparedStatement object to fill in variables of our SQL query
             PreparedStatement ps = conn.prepareStatement(sql); //conn.prepareStatement() instead of createStatement()
@@ -93,12 +92,11 @@ public class RoleDAO implements RoleDAOInterface{
             //the above code gets our data, and now we need to populate that data into a Role object
             //we can return the new role object right away without assigning it to a variable
 
-            while(rs.next()) {
+            while (rs.next()) {
 
                 return new Role(
-                        rs.getInt("role_id"),
-                        rs.getString("role_title"),
-                        rs.getInt("role_salary")
+                        rs.getInt("user_role_id"),
+                        rs.getString("user_role")
                 );
 
             }
@@ -111,33 +109,4 @@ public class RoleDAO implements RoleDAOInterface{
 
         return null;
     }
-
-    @Override
-    public void updateRoleSalary(String title, int salary) {
-
-        try(Connection conn = ConnectionUtil.getConnection()){
-
-            //write out our SQL UPDATE command
-            String sql = "update roles set role_salary = ? where role_title = ?";
-
-            //create our PreparedStatement
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            //input the appropriate values into our PreparedStatement
-            ps.setInt(1, salary); //update the first ? with the int salary from the method arguments
-            ps.setString(2, title); //update the second ? with the String title from the method arguments
-
-            //execute the update!!
-            ps.executeUpdate();
-
-            //tell the user that the update was successful
-            System.out.println(title + " salary has been updated to: " + salary);
-
-        } catch (SQLException e) {
-            System.out.println("Couldn't update :(");
-            e.printStackTrace();
-        }
-
-    }
-
-}//end of the Class
+}
