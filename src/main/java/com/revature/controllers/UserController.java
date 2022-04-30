@@ -9,20 +9,24 @@ import com.google.gson.Gson;
 import com.revature.models.User;
 import com.revature.services.UserService;
 import io.javalin.http.Handler;
+import org.eclipse.jetty.server.Authentication;
 
 import java.util.ArrayList;
 
 public class UserController {
 
-    // we need a userservice object
+    // we need a UserService object
     UserService es = new UserService();
 
+    // this handler will get the HTTP GET request for all users, and send back the users from database
     public Handler getUsersHandler = (ctx) -> {
 
         ArrayList<User> users = es.getUsers();
 
+        // create a gson object to convert our java object into JSON (since we can only transfer JSON, not java)
         Gson gson = new Gson();
 
+        // using the gson.tojson () method to turn our java into JSON
         String JSONUsers = gson.toJson(users);
 
         ctx.result(JSONUsers);

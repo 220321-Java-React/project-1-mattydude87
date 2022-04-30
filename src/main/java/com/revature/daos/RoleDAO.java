@@ -74,13 +74,10 @@ public class RoleDAO implements RoleDAOInterface {
 
         //use a try-with-resources block to open a DB connection
         try (Connection conn = ConnectionUtil.getConnection()) {
-
-            //String that lays out the SQL query we want to run
-            //this String has a variable/parameter, the role_id we're searching for is determined at runtime
             String sql = "select * from user_roles where user_role_id = ?";
 
             //we need a PreparedStatement object to fill in variables of our SQL query
-            PreparedStatement ps = conn.prepareStatement(sql); //conn.prepareStatement() instead of createStatement()
+            PreparedStatement ps = conn.prepareStatement(sql);
 
             //insert the method's argument (int id) as the variable in our SQL query
             ps.setInt(1, id); //the 1 is referring to the first variable (?) in our SQL String

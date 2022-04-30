@@ -18,26 +18,42 @@
     <!-- a div with a class of container makes it so bootstrap will be applied to this div-->
     <!-- everything within this div will get styled with the appropriate bootstrap styling-->
     <div class="container">
+        <div id="loginRow" class="row">
+            
+        </div>
         <h3>Welcome to the Expense Reimbursement System!</h3>
+        <div id = "loginRow" class ="row">
+            <h3>Please Enter Your Login Credentials</h3>
+            <input id ="username" placeholder="Username"/>
+            <input id="password" type="password" placeholder="Password"/>
+            <button id="loginButton" class="btn btn-primary col-sm-3">Login</button>
+        </div>
+        <br>
+        <br>
+
+
         <div id="table-row" class="row">
             <table id="ExpenseTable" class="table table-dark table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Password</th>
                         <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Role ID</th>
+                        <th>User Role ID</th>
                     </tr>
                 </thead>
-                <tbody id="employeeBody">
+                <tbody id="userBody">
                     <!-- we'll leave table body blank it will be filled with data by our js-->
                 </tbody>
             </table>
         </div>
 
-        <button id="getEmployeeButton" class="btn btn-primary">Show Employees</button>
+        <button id="getUsersButton" class="btn btn-primary">Show Users</button>
 
 
     </div>
+    <script src="ERS.js"></script>
+
 </body>
 </html>

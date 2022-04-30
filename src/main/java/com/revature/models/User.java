@@ -9,6 +9,7 @@ public class User {
     private String email;
     private Role role;
 
+
     //no args constructor
 
     public User() {
