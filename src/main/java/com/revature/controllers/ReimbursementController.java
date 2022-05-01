@@ -13,7 +13,6 @@ public class ReimbursementController {
     ReimbursementService rService = new ReimbursementService();
 
     public Handler getReimbursementsHandler = (ctx) -> {
-
         ArrayList<Reimbursement> reimbursements = rService.getReimbursements();
 
         // create a gson object to convert our java object into JSON (since we can only transfer JSON, not java)

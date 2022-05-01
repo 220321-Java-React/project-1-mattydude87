@@ -1,4 +1,4 @@
-const url = "http://localhost:3000"; // putting base url in variable for cleaner code below
+const url = "http://localhost:5000"; // putting base url in variable for cleaner code below
 // eventually, we'll use this in our fetch request and make calls into our server by appending endpoints
 
 // add an event listener to give our button functionality
@@ -63,5 +63,40 @@ async function getUsers() {
 
 // this function will send the user inputted login credentials to our server
 async function loginFunction(){
-    
+    //gather the user inputs from the login inputs
+    //when login button is clicked the value from username and password will be put into variables
+    let usern = document.getElementById("username").value;
+    let userp = document.getElementById("password").value;
+
+    //we want to send the user/pass as JSON, so we need a js object here.
+    let user = {
+        username:usern,
+        password:userp
+    }
+
+    //this object should reflect the loginDTO in our java... this is the data we want to transfer
+    //print out user object to the console
+    console.log(user);
+
+    //fetch request to server
+    let response = await fetch(url+"/login", {
+        method: "POST", //send POST request, would be GET if we didnt specify...
+        body: JSON.stringify(user), //turning our user object into JSON to send to the server
+        credentials: "include"
+        //last line will ensure that the cookie is captured (so that we can have a session)
+        //future fetches after login will require this "include value"
+    })
+
+    //log the response status code, useful for debugs
+    console.log(response.status);
+    let data = await response.json(); //converting from json to JS
+    console.log(response.body);
+
+    //control flow based on successful/unsuccessful login
+    if(response.status === 202){
+        //wipe login row, welcome the user
+        document.getElementById("loginRow").innerText="Welcome" + data.first_name;
+    } else {
+        document.getElementById("loginRow").innerText="Login failed! Refresh the page" + data.first_name;
+    }
 }

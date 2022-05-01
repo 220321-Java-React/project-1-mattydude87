@@ -52,7 +52,7 @@ public class ReimbursementDAO {
                 reimb.setStatus_id_fk(rS);
                 allReimb.add(reimb);
 
-                int Type = rs.getInt("type_id_fk");
+                int Type = rs.getInt("reimb_type_id_fk");
                 Reimb_type rT = ertDAO.getTypeByID(Type);
                 reimb.setType_id_fk(rT);
                 allReimb.add(reimb);
