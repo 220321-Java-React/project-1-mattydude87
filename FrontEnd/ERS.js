@@ -34,15 +34,15 @@ async function getUsers() {
             row.appendChild(cell2);
 
             let cell3 = document.createElement("td");
-            cell3.innerHTML = user.password;
+            cell3.innerHTML = user.first_name;
             row.appendChild(cell3);
 
             let cell4 = document.createElement("td");
-            cell4.innerHTML = user.first_name;
+            cell4.innerHTML = user.last_name
             row.appendChild(cell4);
 
             let cell5 = document.createElement("td");
-            cell5.innerHTML = user.role.user_role_id;
+            cell5.innerHTML = user.role.user_role;
             row.appendChild(cell5);
 
             // append tr which we called "row" to the table body (tbody)
@@ -94,9 +94,18 @@ async function loginFunction(){
 
     //control flow based on successful/unsuccessful login
     if(response.status === 202){
-        //wipe login row, welcome the user
-        document.getElementById("loginRow").innerText="Welcome" + data.first_name;
+    
+        if (data.role.user_role == 'manager') {
+
+            window.location.href = '/adminpage/adminpage.html';
+
+        }
+        else if (data.role.user_role == 'employee')
+         {
+            window.location.href= 'employeepage.html';
+        }
+        
     } else {
-        document.getElementById("loginRow").innerText="Login failed! Refresh the page" + data.first_name;
+        document.getElementById("loginRow").innerText="Login failed! Refresh the page " + data.first_name;
     }
 }

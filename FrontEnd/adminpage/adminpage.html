@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    
+    <link href="https://unpkg.com/basscss@7.1.1/css/basscss.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <h3>Welcome to the Admin Page!</h3>
+    <div class="mb1">
+        <button id="getReimbRequests" class="btn btn-primary">View Reimbursement Requests</button>
+        <button id="getAllReimbursements" class="btn btn-primary">View all Reimbursements</a></button>
+        
+      </div>
+      <div id="table-row" class="row">
+        <table id="ExpenseTable" class="table table-dark table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Reimb ID</th>
+                    <th>Amount</th>
+                    <th>Date_Submitted</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="reimbRequestsBody">
+                <!-- we'll leave table body blank it will be filled with data by our js-->
+            </tbody>
+        </table>
+        <a href="ERS.html" class="f90-logout-button">Logout</a>
+        
+    </div>
+
+    
+
+</div>
+      <script src="adminpage.js"></script>
+
+</body>
+</html>

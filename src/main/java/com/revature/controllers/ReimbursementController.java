@@ -24,4 +24,16 @@ public class ReimbursementController {
         ctx.result(JSONReimbursements);
         ctx.status(200);
     };
+    public Handler getReimbursementRequestsHandler = (ctx) -> {
+        ArrayList<Reimbursement> reimbursementRequests = rService.getReimbursementRequests();
+
+        // create a gson object to convert our java object into JSON (since we can only transfer JSON, not java)
+        Gson gson = new Gson();
+
+        // using the gson.tojson () method to turn our java into JSON
+        String JSONReimbursementRequests = gson.toJson(reimbursementRequests);
+
+        ctx.result(JSONReimbursementRequests);
+        ctx.status(200);
+    };
 }

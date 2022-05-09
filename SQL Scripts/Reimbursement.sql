@@ -59,3 +59,6 @@ reimb_type_id_fk int REFERENCES reimbursement_type(reimb_type_id)
 INSERT INTO reimbursement (amount, description, author_fk, resolver_fk, status_id_fk, reimb_type_id_fk)
 VALUES (225, 'airplane ticket', 2, 1, 2, 3), (450, 'business dinner', 3, 1, 1, 2),
 (65, 'gasoline', 1, 1, 2, 4);
+
+select * from users where username = 'joeybones5' and PASSWORD = 'greenobot'
+select * from reimbursement where status_id_fk = 1

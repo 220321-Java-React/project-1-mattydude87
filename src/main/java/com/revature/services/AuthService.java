@@ -10,13 +10,11 @@ public class AuthService {
     // typically youll want to validate username/password here in the service
     // by calling some DAO method that gets users where username = ? and password = ?
 
-   public User login(String username, String password) {
-       return aDAO.isValidUser(username,password);
-   }
-//        if(username.equals()) && password.equals("bossman24")) {
-//        return user;
-//        }
-   }
+    public User login(String username, String password) {
+        return aDAO.isValidUser(username, password);
+    }
+}
+
 
 
 

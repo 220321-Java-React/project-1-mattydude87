@@ -12,4 +12,9 @@ public class ReimbursementService {
         ArrayList<Reimbursement> reimbursements = rDAO.getReimbursements();
         return reimbursements;
     }
+
+    public ArrayList<Reimbursement> getReimbursementRequests(){
+        ArrayList<Reimbursement> reimbursementRequests = rDAO.getReimbursementRequests();
+        return reimbursementRequests;
+    }
 }

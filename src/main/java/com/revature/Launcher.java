@@ -36,6 +36,7 @@ public class Launcher {
         // takes in a url endpoint, and a place in the server to send the request to
         app.get("/users", uc.getUsersHandler);
         app.get("/reimbursements", rc.getReimbursementsHandler);
+        app.get("/reimbursement/requests", rc.getReimbursementRequestsHandler);
         app.post("/login", ac.loginHandler);
 
     }

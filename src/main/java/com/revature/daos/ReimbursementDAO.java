@@ -40,17 +40,17 @@ public class ReimbursementDAO {
                 int AuthorFK = rs.getInt("author_fk");
                 User ur = uDAO.getUserByID(AuthorFK);
                 reimb.setAuthor_fk(ur);
-                allReimb.add(reimb);
+              //  allReimb.add(reimb);
 
                 int Resolver = rs.getInt("resolver_fk");
                 User ur2 = uDAO.getUserByID(Resolver);
                 reimb.setResolver_fk(ur2);
-                allReimb.add(reimb);
+                //allReimb.add(reimb);
 
                 int Status = rs.getInt("status_id_fk");
                 Reimb_status rS = ersDAO.getStatusByID(Status);
                 reimb.setStatus_id_fk(rS);
-                allReimb.add(reimb);
+               // allReimb.add(reimb);
 
                 int Type = rs.getInt("reimb_type_id_fk");
                 Reimb_type rT = ertDAO.getTypeByID(Type);
@@ -60,6 +60,51 @@ public class ReimbursementDAO {
             return allReimb;
         } catch (SQLException e) {
             System.out.println("Get all reimbursements has failed");
+        }
+        return null;
+    }
+    public ArrayList<Reimbursement> getReimbursementRequests () {
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select * from reimbursement where status_id_fk = 1;";
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery(sql);
+            ArrayList<Reimbursement> reimbRequests = new ArrayList<>();
+            while(rs.next()) {
+                Reimbursement reimbReq = new Reimbursement (
+                        rs.getInt("reimb_id"),
+                        rs.getInt("amount"),
+                        rs.getTimestamp("date_submitted"),
+                        rs.getTimestamp("date_resolved"),
+                        rs.getString("description"),
+                        null,
+                        null,
+                        null,
+                        null
+                );
+                int AuthorFK = rs.getInt("author_fk");
+                User ur = uDAO.getUserByID(AuthorFK);
+                reimbReq.setAuthor_fk(ur);
+                //reimbRequests.add(reimbReq);
+
+                int Resolver = rs.getInt("resolver_fk");
+                User ur2 = uDAO.getUserByID(Resolver);
+                reimbReq.setResolver_fk(ur2);
+                //reimbRequests.add(reimbReq);
+
+                int Status = rs.getInt("status_id_fk");
+                Reimb_status rS = ersDAO.getStatusByID(Status);
+                reimbReq.setStatus_id_fk(rS);
+                //reimbRequests.add(reimbReq);
+
+                int Type = rs.getInt("reimb_type_id_fk");
+                Reimb_type rT = ertDAO.getTypeByID(Type);
+                reimbReq.setType_id_fk(rT);
+
+                reimbRequests.add(reimbReq);
+            }
+            return reimbRequests;
+        } catch (SQLException e) {
+            System.out.println("Get all reimbursement requests has failed");
         }
         return null;
     }

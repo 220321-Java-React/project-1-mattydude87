@@ -13,10 +13,8 @@ import java.util.ArrayList;
 public class AuthDAO {
     public User isValidUser (String username, String password) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select * from users where username= '" + username + "' and password= '" + password + "'" ;
-
+            String sql = "select * from users where username= '" + username + "' and password= '" + password + "'";
             Statement s = conn.createStatement();
-
             System.out.println(sql);
             ResultSet rs = s.executeQuery(sql);
 
@@ -31,7 +29,6 @@ public class AuthDAO {
                         null
                 );
                 int nrol = rs.getInt("role_id_fk");
-                System.out.println("1");
                 RoleDAO rDao = new RoleDAO();
                 Role rol = rDao.getRoleById(nrol);
                 curUser.setRole(rol);
